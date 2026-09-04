@@ -1,0 +1,268 @@
+:root {
+    --bg-dark: #0d1117;
+    --card-bg: #161b22;
+    --border-color: #30363d;
+    --text-main: #c9d1d9;
+    --text-muted: #8b949e;
+    --accent: #58a6ff; /* Azul tipo editor de código */
+    --accent-glow: rgba(88, 166, 255, 0.2);
+    --neon-green: #3fb950;
+    --font-mono: 'Fira Code', monospace;
+    --font-sans: 'Roboto', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background-color: var(--bg-dark);
+    /* Patrón de cuadrícula tenue para aspecto informático */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 30px 30px;
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* Layout Principal: 2 columnas */
+.layout-wrapper {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    align-items: flex-start; /* CRÍTICO para que funcione el sticky */
+}
+
+/* Columna Izquierda (Contenido) */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Columna Derecha (Descarga Siempre Visible) */
+.sidebar {
+    width: 350px;
+    position: sticky;
+    top: 40px; /* Se queda pegado a 40px del borde superior al hacer scroll */
+}
+
+/* Animaciones */
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-fade {
+    animation: fadeInSlide 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.main-content .card:nth-child(1) { animation-delay: 0.1s; }
+.main-content .card:nth-child(2) { animation-delay: 0.2s; }
+.main-content .card:nth-child(3) { animation-delay: 0.3s; }
+.main-content .card:nth-child(4) { animation-delay: 0.4s; }
+.sidebar { animation-delay: 0.5s; }
+
+/* Estilos de las Tarjetas */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 35px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transition: border-color 0.3s;
+}
+
+.card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* Tipografía Informática */
+h1, h2, h3 {
+    font-family: var(--font-mono);
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 2.2rem;
+    color: var(--text-main);
+    margin-bottom: 5px;
+}
+
+h2 {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+h3 {
+    font-size: 1.3rem;
+    color: var(--accent);
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.prompt { color: var(--neon-green); }
+.highlight { color: var(--accent); font-weight: bold; }
+
+/* Grid de Características */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.feature-box {
+    background: #090c10;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 6px;
+    border-top: 3px solid var(--accent);
+}
+
+.feature-box h4 {
+    font-family: var(--font-mono);
+    margin: 0 0 10px 0;
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+.feature-box .icon { color: var(--accent); margin-right: 5px; }
+
+/* Bloque de Equipo (Estilo Código) */
+.terminal-block {
+    background: #010409;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    overflow-x: auto;
+}
+.var { color: #ff7b72; } /* Rojo/Rosa tipo palabra reservada */
+.string { color: #a5d6ff; } /* Azul claro tipo string */
+
+/* --------------------------------------
+   SECCIÓN DE DESCARGA (TERMINAL WINDOW)
+--------------------------------------- */
+.terminal-window {
+    background: #010409;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.terminal-header {
+    background: #161b22;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.terminal-title {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.terminal-body {
+    padding: 30px;
+    text-align: center;
+}
+
+.terminal-body h3 {
+    border-bottom: none;
+    margin-bottom: 5px;
+    color: var(--text-main);
+}
+
+.sys-text {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* Botón Cyberpunk / Hacker */
+.btn-cyber {
+    display: block;
+    font-family: var(--font-mono);
+    background: transparent;
+    color: var(--neon-green);
+    border: 1px solid var(--neon-green);
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 10px rgba(63, 185, 80, 0.1), 0 0 10px rgba(63, 185, 80, 0.1);
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.btn-cyber:hover {
+    background: var(--neon-green);
+    color: #000;
+    box-shadow: 0 0 20px rgba(63, 185, 80, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Barra de estado del contador */
+.status-bar {
+    background: #161b22;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px dashed var(--border-color);
+    text-align: left;
+    font-family: var(--font-mono);
+}
+
+.status-label {
+    font-size: 0.75rem;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.contador-texto {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.glow-text {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-shadow: 0 0 5px var(--accent-glow);
+}
+
+/* Responsive para tablets y móviles */
+@media (max-width: 950px) {
+    .layout-wrapper {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        position: static; /* Quita el sticky en pantallas pequeñas */
+        margin-top: 10px;
+    }
+}
